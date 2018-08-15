@@ -2159,7 +2159,7 @@ static BOOL choose_fallback_font(HDC hdc, HFONT font, const wchar_t* text, int t
 	if (font)
 		SelectObject(meta_file_dc, font);
 
-	SCRIPT_STRING_ANALYSIS script_analysis;
+	void* script_analysis;
 	HRESULT hresult =
 		ScriptStringAnalyse(meta_file_dc, text, text_length, 0, -1,
 			SSA_METAFILE | SSA_FALLBACK | SSA_GLYPHS | SSA_LINK,
@@ -3778,6 +3778,14 @@ static LRESULT CALLBACK WndProc(HWND hwnd, UINT message,
 	}
 	return FALSE;
       case WM_KEYDOWN:
+		if (wParam == VK_ESCAPE) {
+			HIMC hImc = ImmGetContext(hwnd);
+			if (ImmGetOpenStatus(hImc)) {
+				ImmSetConversionStatus(hImc, IME_CMODE_ALPHANUMERIC, IME_SMODE_NONE);
+				ImmReleaseContext(hwnd, hImc);
+				goto KEY_END;
+			}
+		}
         if (wParam == VK_CONTROL && conf_get_int(term->conf, CONF_url_ctrl_click)) {
             GetCursorPos(&cursor_pt);
             ScreenToClient(hwnd, &cursor_pt);
