@@ -6,8 +6,8 @@
  * welcome.
  */
 
-#include "version.h"
-#include "licence.h"
+//#include "version.h"
+//#include "licence.h"
 
 /*
  * The actual VERSIONINFO resource.
@@ -15,8 +15,8 @@
 VS_VERSION_INFO VERSIONINFO
 /* (None of this "fixed" info appears to be trivially user-visible on
  * Win98SE. The binary version does show up on Win2K.) */
-FILEVERSION	BINARY_VERSION
-PRODUCTVERSION	BINARY_VERSION	/* version of whole suite */
+FILEVERSION	0,67,0,0
+PRODUCTVERSION	0,67,0,0	/* version of whole suite */
 FILEFLAGSMASK	VS_FF_DEBUG | VS_FF_PRERELEASE | VS_FF_PRIVATEBUILD
 FILEFLAGS	0x0L
 #if defined DEBUG
@@ -43,12 +43,12 @@ BEGIN
 	    VALUE "FileDescription",	APPDESC
 	    VALUE "InternalName",	APPNAME
 	    VALUE "OriginalFilename",	APPNAME
-	    VALUE "FileVersion",	TEXTVER
-	    VALUE "ProductVersion",	TEXTVER
-	    VALUE "LegalCopyright",	"Copyright \251 " SHORT_COPYRIGHT_DETAILS "."
+	    VALUE "FileVersion",	"0,67,0,0\n"
+	    VALUE "ProductVersion",	"0,67,0,0\n"
+	    VALUE "LegalCopyright",	"Copyright \251 " "..." "."
 #if (!defined SNAPSHOT) && (!defined RELEASE) && (!defined PRERELEASE)
 	    /* Only if VS_FF_PRIVATEBUILD. */
-	    VALUE "PrivateBuild",	TEXTVER /* NBI */
+	    VALUE "PrivateBuild",	"0,67,0,0\n" /* NBI */
 #endif
 	END
     END
